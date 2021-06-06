@@ -1,0 +1,34 @@
+* projectile-env
+I use [[https://github.com/bbatsov/projectile][Projectile]] to manage projects in Emacs, and ~.env~ files to manage environment variables for those projects. I edit the ~.env~ files often enough that I'd like to be able to open them quickly, but they aren't accessible using ~projectile-find-file~ because they are not tracked by ~git~. projectile-env makes it easy to quickly open ~.env~ and variants in the project root.
+** Setup
+With [[https://github.com/raxod502/straight.el][straight.el]] and [[https://github.com/jwiegley/use-package][use-package]]:
+
+#+BEGIN_SRC elisp
+  (use-package projectile-env
+    :straight (projectile-env
+               :host github
+               :repo "peterstuart/projectile-env")
+    :bind (("C-c p e e" . projectile-env)
+           ("C-c p e l" . projectile-env-local)
+           ("C-c p e t" . projectile-env-test)
+           ("C-c p e x" . projectile-env-example)))
+#+END_SRC
+
+** Usage
+Use ~(projectile-env)~ or the related functions to open or create a ~.env~ file in the root of the Projectile project.
+
+| File           | Function                 |
+|----------------+--------------------------|
+| ~.env~         | ~projectile-env~         |
+| ~.env.local~   | ~projectile-env-local~   |
+| ~.env.test~    | ~projectile-env-test~    |
+| ~.env.example~ | ~projectile-env-example~ |
+
+~projectile-env~ accepts an optional ~SUFFIX~ argument, so you can define functions for other kinds of ~.env~ files:
+
+#+BEGIN_SRC elisp
+  (defun projectile-env-custom ()
+  "Opens .env.custom in the project root."
+    (interactive)
+    (projectile-env ".custom"))
+#+END_SRC
