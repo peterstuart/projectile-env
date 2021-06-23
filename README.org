@@ -28,7 +28,7 @@ Use ~(projectile-env)~ or the related functions to open or create a ~.env~ file 
 
 #+BEGIN_SRC elisp
   (defun projectile-env-custom ()
-  "Opens .env.custom in the project root."
+    "Opens .env.custom in the project root."
     (interactive)
     (projectile-env ".custom"))
 #+END_SRC
