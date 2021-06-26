@@ -19,6 +19,7 @@
 ;; C-c p e x: projectile-env-example
 
 ;;; Code:
+;; -*- lexical-binding: t -*-
 
 (require 'projectile)
 
